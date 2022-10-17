@@ -1,0 +1,24 @@
+name: CI
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: pyenv
+        run: |
+          curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+          echo "~/.pyenv/bin" >> $GITHUB_PATH
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+      - uses: actions/cache@v2
+        with:
+          path: ~/.pyenv/versions
+          key: ${{ runner.os }}-pyenv-${{ hashFiles('.python-version') }}
+      - name: build
+        run: ./build
+      - name: runtests
+        run: ./runtests
