@@ -1,0 +1,7 @@
+black==22.3.0
+flake8-bugbear==21.4.3
+flake8-comprehensions==3.5.0
+flake8-no-pep420==1.1.0
+flake8-tuple==0.4.1
+flake8==3.9.2
+isort==5.9.2
