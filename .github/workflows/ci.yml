@@ -20,5 +20,3 @@ jobs:
           key: ${{ runner.os }}-pyenv-${{ hashFiles('.python-version') }}
       - name: build
         run: ./build
-      - name: runtests
-        run: ./runtests
