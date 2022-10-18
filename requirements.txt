@@ -5,3 +5,4 @@ flake8-no-pep420==1.1.0
 flake8-tuple==0.4.1
 flake8==3.9.2
 isort==5.9.2
+pytest==7.1.3
