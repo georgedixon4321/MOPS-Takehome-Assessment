@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+export PATH=env/bin:${PATH}
 
 flake8 project
 black project/ --check
