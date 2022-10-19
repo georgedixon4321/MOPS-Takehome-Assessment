@@ -2,6 +2,8 @@
 
 set -e
 
+
 black project
-flake8 project
 isort project
+flake8 project
+

@@ -1,9 +1,12 @@
 #!/usr/bin/env python
-import json
-
 from project.utils.api import (
-    get_age_from_agify_api, get_gender_from_genderize_api,
-    get_most_likely_nationality_from_nationalize_api, verkada_api_request_post)
+    get_age_from_agify_api,
+    get_gender_from_genderize_api,
+    get_most_likely_nationality_from_nationalize_api,
+    verkada_api_request_post,
+)
+
+import json
 
 # Import any libraries you need
 
