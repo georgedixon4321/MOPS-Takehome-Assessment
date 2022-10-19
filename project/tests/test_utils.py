@@ -1,5 +1,5 @@
-from project import __test__
+from project.utils.queries import test
 
 
 def test_test():
-    assert __test__ == "0.1.0"
+    assert test == "test"

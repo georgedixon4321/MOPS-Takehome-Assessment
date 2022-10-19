@@ -7,4 +7,4 @@ flake8 project
 black project/ --check
 isort --check --diff project
 
-pytest
+coverage run --source=project -m pytest project/tests && coverage report -m
