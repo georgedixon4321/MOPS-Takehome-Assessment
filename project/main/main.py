@@ -80,13 +80,13 @@ dbInstance.deleteRows(tableName="Table1", matchingCriteria={"name": "Craig"})
 
 # Queries to run sequentially
 list_of_query_dicts = [
-    {"keyToCheck": "age", "operatorChoice": ">", "criteria": 30, "sortBy": True},
+    {"keyToCheck": "age", "operatorChoice": ">", "criteria": 30},
     {"keyToCheck": "gender", "operatorChoice": "==", "criteria": "male"},
 ]
 
 
 four_youngest_males_older_than_30 = dbInstance.getRows(
-    tableName="Table1", listOfQueryDicts=list_of_query_dicts
+    tableName="Table1", listOfQueryDicts=list_of_query_dicts, sortBy="age"
 )[:4]
 
 # Part 2 Submission data

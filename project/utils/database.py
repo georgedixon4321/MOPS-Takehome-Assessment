@@ -53,7 +53,7 @@ class VerkadaDB:
         for rowIndex in rowsToUpdate:
             del table[rowIndex]
 
-    def getRows(self, tableName, listOfQueryDicts):
+    def getRows(self, tableName, listOfQueryDicts, sortBy=None):
         """A very basic query system.
         Allows multiple comparison queries.
         Takes a list of dictionaries. Each dict requires "keyToCheck", "operatorChoice", "criteria".
@@ -62,16 +62,6 @@ class VerkadaDB:
         Has optional key "sortBy" which if labeled true will sort the rows in ascending order relative to the "keyToCheck" in that dict.
         If the optional "sortBy" key is provided in more than one dictionary it will use the last one found!
         """
-        sortByKeyIndex = next(
-            (
-                index
-                for index, dict in enumerate(listOfQueryDicts)
-                if "sortBy" in dict.keys()
-            ),
-            None,
-        )
-        if sortByKeyIndex is not None:
-            sortByKey = listOfQueryDicts[sortByKeyIndex]["keyToCheck"]
         primaryKeys = []
         sortByValues = []
         table = self.getTable(tableName)
@@ -84,20 +74,35 @@ class VerkadaDB:
                     criteria=query["criteria"],
                 )
                 # print(f"{table[row][query['keyToCheck']]} {query['operatorChoice']} {query['criteria']} : {match}")
-                if match and not firstQueryExecuted and row not in primaryKeys:
+                if (
+                    match
+                    and not firstQueryExecuted
+                    and row not in primaryKeys
+                    and sortBy
+                ):
                     primaryKeys.append(row)
-                    sortByValues.append(table[row][sortByKey])
+                    sortByValues.append(table[row][sortBy])
+                if (
+                    match
+                    and not firstQueryExecuted
+                    and row not in primaryKeys
+                    and not sortBy
+                ):
+                    primaryKeys.append(row)
                 if not match and firstQueryExecuted and row in primaryKeys:
                     # print(f"{table[row]['name']} has index {row} and is being removed from list")
                     indexToBeRemoved = primaryKeys.index(row)
                     primaryKeys.remove(row)
-                    del sortByValues[indexToBeRemoved]
+                    if sortBy:
+                        del sortByValues[indexToBeRemoved]
                 # print(primaryKeys)
 
             firstQueryExecuted = True
-
-        sortedPrimaryKeysBasedOnValuePairs = [
-            pk for _, pk in sorted(zip(sortByValues, primaryKeys))
-        ]
-        # print(sortedPrimaryKeysBasedOnValuePairs)
-        return [table[row] for row in sortedPrimaryKeysBasedOnValuePairs]
+        if sortBy:
+            sortedPrimaryKeysBasedOnValuePairs = [
+                pk for _, pk in sorted(zip(sortByValues, primaryKeys))
+            ]
+            # print(sortedPrimaryKeysBasedOnValuePairs)
+            return [table[row] for row in sortedPrimaryKeysBasedOnValuePairs]
+        else:
+            return [table[row] for row in primaryKeys]
