@@ -59,8 +59,7 @@ class VerkadaDB:
         Takes a list of dictionaries. Each dict requires "keyToCheck", "operatorChoice", "criteria".
         For the first element of the query dictionary takes the "keyToCheck" element of the row of the table and compares the value with "Criteria" using the given "operatorChoice".
         Once matches are found it adds the index to an array, every query iteration after this it will remove non matches from the index list.
-        Has optional key "sortBy" which if labeled true will sort the rows in ascending order relative to the "keyToCheck" in that dict.
-        If the optional "sortBy" key is provided in more than one dictionary it will use the last one found!
+        Has optional key "sortBy" argument which should match a 'column' key in each row which instructs this function to sort in ascending order by those values.
         """
         primaryKeys = []
         sortByValues = []
