@@ -42,14 +42,14 @@ class VerkadaDB:
 
     def updateRows(self, tableName, matchingCriteria, updateInformation):
         rowsToUpdate = self.getPrimaryKeysForMatchingRows(tableName, matchingCriteria)
-        table = self.getTable("Table1")
+        table = self.getTable(tableName)
         for rowIndex in rowsToUpdate:
             for key, value in updateInformation.items():
                 table[rowIndex][key] = value
 
     def deleteRows(self, tableName, matchingCriteria):
         rowsToUpdate = self.getPrimaryKeysForMatchingRows(tableName, matchingCriteria)
-        table = self.getTable("Table1")
+        table = self.getTable(tableName)
         for rowIndex in rowsToUpdate:
             del table[rowIndex]
 
