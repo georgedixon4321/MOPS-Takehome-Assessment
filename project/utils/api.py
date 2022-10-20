@@ -28,10 +28,10 @@ def get_gender_from_genderize_api(name):
 
 def get_most_likely_nationality_from_nationalize_api(name):
     nationalize_api_data = api_request_get(name=name, endpoint=endpoints["nationalize"])
-    mostLikelyNationality = max(
+    most_likely_nationality = max(
         nationalize_api_data["country"], key=lambda x: x["probability"]
     )
-    return mostLikelyNationality["country_id"]
+    return most_likely_nationality["country_id"]
 
 
 def verkada_api_request_post(data):
@@ -41,5 +41,4 @@ def verkada_api_request_post(data):
         json={"data": data},
     )
     response.raise_for_status()
-    print(response.content.decode("utf-8"))
     return response.content.decode("utf-8")

@@ -2,7 +2,7 @@
 import operator
 
 
-def runQuery(toBeChecked, operatorChoice, criteria):
+def run_query(to_be_checked, operator_choice, criteria):
     ops = {
         "==": operator.eq,
         "=<": operator.le,
@@ -11,4 +11,4 @@ def runQuery(toBeChecked, operatorChoice, criteria):
         "<": operator.lt,
     }
 
-    return ops[operatorChoice](toBeChecked, criteria)
+    return ops[operator_choice](to_be_checked, criteria)

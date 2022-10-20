@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from project.utils.queries import runQuery
+from project.utils.queries import run_query
 
 
 class VerkadaDB:
@@ -78,9 +78,9 @@ class VerkadaDB:
         firstQueryExecuted = False
         for query in listOfQueryDicts:
             for row in table:
-                match = runQuery(
-                    toBeChecked=table[row][query["keyToCheck"]],
-                    operatorChoice=query["operatorChoice"],
+                match = run_query(
+                    to_be_checked=table[row][query["keyToCheck"]],
+                    operator_choice=query["operatorChoice"],
                     criteria=query["criteria"],
                 )
                 # print(f"{table[row][query['keyToCheck']]} {query['operatorChoice']} {query['criteria']} : {match}")
