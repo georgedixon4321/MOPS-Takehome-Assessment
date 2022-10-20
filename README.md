@@ -7,7 +7,7 @@ Submission for "MOPS Takehome Assessment: API Integration (python)" https://gist
 - Functionally, the only used library is `requests` which is used for the relevant api calls.
 
 # Notes
-- I have not put an emphasis on computational efficiency. A lot, if not all of the code in this code base could be improved in that regard, especially the database functions. This was partially due to the fact I don't think it entirely necessary for a project such as this, especially when firing single api requests rather than batch requests. That being said, had I have had more time I would have optimised the database functions, especially the `getRows` function.
+- I have not put an emphasis on computational efficiency. A lot, if not all of the code in this code base could be improved in that regard, especially the database functions. This was partially due to the fact I don't think it entirely necessary for a project such as this, especially with the single api requests as bottleneck. That being said, had I have had more time I would have optimised the database functions, especially the `getRows` function.
 - I try to avoid comments where I can, communicating mainly via sensible variable name choices
 - I have commented out any post request triggers in `main.py`. Also, have left a few prints within more complex functions if you wish to see how they work visually.
 
