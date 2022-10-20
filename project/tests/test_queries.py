@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from project.utils.queries import test
 
 

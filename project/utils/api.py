@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import json
 import requests
 
@@ -27,11 +28,9 @@ def get_gender_from_genderize_api(name):
 
 def get_most_likely_nationality_from_nationalize_api(name):
     nationalize_api_data = api_request_get(name=name, endpoint=endpoints["nationalize"])
-    # print(f"All data: {nationalize_api_data['country']}")
     mostLikelyNationality = max(
         nationalize_api_data["country"], key=lambda x: x["probability"]
     )
-    # print(f"Most likely: {mostLikelyNationality}")
     # Needs test for equal max values
     return mostLikelyNationality["country_id"]
 
