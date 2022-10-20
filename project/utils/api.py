@@ -11,7 +11,7 @@ endpoints = {
 
 def api_request_get(name, endpoint):
     client = requests.Session()
-    response = client.get(f"{endpoint}{name}&apikey=796bb7da2520050a041837fd72bf140c")
+    response = client.get(f"{endpoint}{name}")
     response.raise_for_status()
     return json.loads(response.content.decode("utf-8"))
 
@@ -31,7 +31,6 @@ def get_most_likely_nationality_from_nationalize_api(name):
     mostLikelyNationality = max(
         nationalize_api_data["country"], key=lambda x: x["probability"]
     )
-    # Needs test for equal max values
     return mostLikelyNationality["country_id"]
 
 
